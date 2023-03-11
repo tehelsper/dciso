@@ -334,6 +334,21 @@ then
     chmod +x chroot/etc/live-tools/*
     printf "${BOLD}${GRN}[i]${RST} Completed. Run './dciso start-chroot' to enter chroot.\n"
     printf "${BOLD}${GRN}[i]${RST} Once in the chrooted environment, ensure that you run \"./etc/live-tools/dciso in-init\"\n"
+  elif [[ "$1" == "build-overlayfs" ]]
+  then
+    if [ ! -d ./chroot ]
+    then
+      printf "\n${BOLD}${RED}[?]${RST} Chroot has not been made yet ... \n"
+      exit 1
+    fi
+    if [ ! -d ./rootfs/${2} ]
+    then
+      printf "\n${BOLD}${RED}[?]${RST} Overlay FS ${2} is missing ... \n"
+      exit 1
+    fi
+    printf "${BOLD}${GRN}[i]${RST} Copying overlay FS ${2} into ./chroot\n"
+    rsync -r -K ./rootfs/${2}/* ./chroot/
+    printf "${BOLD}${GRN}[i]${RST} Completed.\n"
   elif [[ "$1" == "mkiso" ]]
   then
     dciso_mkiso $2 ## What weird syntax...
