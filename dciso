@@ -333,7 +333,7 @@ then
     cp dciso chroot/etc/live-tools/
     chmod +x chroot/etc/live-tools/*
     printf "${BOLD}${GRN}[i]${RST} Completed. Run './dciso start-chroot' to enter chroot.\n"
-    printf "${BOLD}${GRN}[i]${RST} Once in the chrooted environment, ensure that you run \"./etc/live-tools/dciso init\"\n"
+    printf "${BOLD}${GRN}[i]${RST} Once in the chrooted environment, ensure that you run \"./etc/live-tools/dciso in-init\"\n"
   elif [[ "$1" == "mkiso" ]]
   then
     dciso_mkiso $2 ## What weird syntax...
